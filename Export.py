@@ -40,7 +40,7 @@ def UpdateData(msgID, rating):
     print('Failed to update data from', msgID)
     return False
 
-def AddData(Data): #[message-id(link), messageID, Author, Content, Thumbnail(img-link),
+def AddData(Data): #[messageID, message-id(link), Author, Content, Thumbnail(img-link), rating]
     print('Adding row', Data[0])
     #make the tags
     tableBody = soup.find('tbody')
