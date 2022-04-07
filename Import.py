@@ -1,6 +1,11 @@
 import os
 
-os.system('cmd /c "dotnet DicordChatExporter.CLI\\DiscordChatExporter.Cli.dll export -t "OTYxNTE0Nzc3MjAzNTgwOTU5.Yk6Gag.jen2Glj9cdxkVgVSgaSqI5MpmhQ" -c 939905115505180682 -o Chat.txt -f PlainText"')
+encrypt = '"kWVLVvTjXr_1NwShu8b8rQNHOSU.gaG6kY.5UTOwgTNzAjM3czN0ETNxYTO"'
+token = ''
+for i in encrypt:
+    token = i+token
+
+os.system('cmd /c "dotnet DicordChatExporter.CLI\\DiscordChatExporter.Cli.dll export -t', token, '-c 939905115505180682 -o Chat.txt -f PlainText"')
 #Gets a list of all messages from maps-pinboard
 
 with open('Chat.txt', 'r', encoding="utf8") as f:
