@@ -1,6 +1,6 @@
 import os
 
-os.system('cmd /c "dotnet DicordChatExporter.CLI\\DiscordChatExporter.Cli.dll export -t "OTYxMTU1NDIzODU0MDA2MzYz.Yk6DNA.ImDMSLG1YEvsNXXYC0nSxk9XwG8" -c 939905115505180682 -o Chat.txt -f PlainText"')
+os.system('cmd /c "dotnet DicordChatExporter.CLI\\DiscordChatExporter.Cli.dll export -t "OTYxNTE0Nzc3MjAzNTgwOTU5.Yk6Gag.jen2Glj9cdxkVgVSgaSqI5MpmhQ" -c 939905115505180682 -o Chat.txt -f PlainText"')
 #Gets a list of all messages from maps-pinboard
 
 with open('Chat.txt', 'r', encoding="utf8") as f:
