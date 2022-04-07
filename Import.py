@@ -5,7 +5,7 @@ token = ''
 for i in encrypt:
     token = i+token
 
-os.system(f'cmd /k "dotnet DicordChatExporter.CLI\\DiscordChatExporter.Cli.dll export -t {token} -c 939905115505180682 -o Chat.txt -f PlainText"')
+os.system(f'cmd /c "dotnet DicordChatExporter.CLI\\DiscordChatExporter.Cli.dll export -t {token} -c 939905115505180682 -o Chat.txt -f PlainText"')
 #Gets a list of all messages from maps-pinboard
 
 with open('Chat.txt', 'r', encoding="utf8") as f:
