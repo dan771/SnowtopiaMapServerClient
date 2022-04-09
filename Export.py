@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-with open('public\MapPage.html', 'r', encoding="utf8") as f:
+with open('MapPage.html', 'r', encoding="utf8") as f:
     txt = f.read()
     soup = BeautifulSoup(txt,"html5lib")
 
@@ -24,7 +24,7 @@ def DeleteData(msgID):
         if str(msgID)==str(ID):
             e.decompose()
             print('Successfully deleted data from', msgID)
-            with open('public\MapPage.html', 'w', encoding="utf8") as f:
+            with open('MapPage.html', 'w', encoding="utf8") as f:
                 f.write(str(soup))
             return
     print('Failed to delete data from', msgID)
@@ -37,7 +37,7 @@ def UpdateData(msgID, rating):
             A = e.find_all('td')[-1]
             A.string = str(rating)
             print('Successfully updated data from', msgID)
-            with open('public\MapPage.html', 'w', encoding="utf8") as f:
+            with open('MapPage.html', 'w', encoding="utf8") as f:
                 f.write(str(soup))
             return
     print('Failed to update data from', msgID)
@@ -80,7 +80,7 @@ def EditData(msgID, mode, edit):
                 new.string = edit
                 old.replace_with(new)
 
-            with open('public\MapPage.html', 'w', encoding="utf8") as f:
+            with open('MapPage.html', 'w', encoding="utf8") as f:
                 f.write(str(soup))
                 print('written sucsessfully!')
                 return
@@ -119,5 +119,5 @@ def AddData(Data): #[messageID, message-id(link), Author, Content, Thumbnail(img
     downloadParent.insert(0, download)
     row.insert(5, rating)
     print('Success!')
-    with open('public\MapPage.html', 'w', encoding="utf8") as f:
+    with open('MapPage.html', 'w', encoding="utf8") as f:
         f.write(str(soup))
