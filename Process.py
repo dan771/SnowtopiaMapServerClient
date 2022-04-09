@@ -1,4 +1,4 @@
-import sys, csv, Export
+import sys, csv, os, Export
 import Import as Dimp
 Exporter = []
 
@@ -82,21 +82,22 @@ def ExtractRating(string):
     end = '**'
     return element[element.find(start)+len(start):element.rfind(end)]
 
-def MatchData(Data):
-    if Data[0] == 'Everest.zip':
-            Data[0] = '943463799762071573'
-            Data[1] = 'https://discordapp.com/channels/932741876174454914/939905115505180682/943463799762071573'
-            Data[4] = 'https://cdn.discordapp.com/attachments/932881912714895390/943402390902681620/everest_screen2.png'
-            Data[5] = 'https://cdn.discordapp.com/attachments/932881912714895390/943402390541959168/Everest.zip'
-    return Data
+def help():
+    print('Commands: \n UpdateToken(NewToken) - overwrites to token.txt \n DelToken() - deletes token.txt \n Export.[] commands:')
+    Export.help()
 
+def UpdateToken(NewToken):
+    with open('token.txt', 'w') as f:
+        f.write(NewToken)
+        print('New token written sucsessfully')
+
+def DelToken():
+    os.remove('token.txt')
+            
 if __name__ == '__main__' and mode != 't':
     print('ExtractingData...')
     for i in Import:
-        
-        Exporting = []
         Exporting = [ExtractID(i), ExtractIDLink(i), ExtractAuthor(i), ExtractContent(i).replace('\n',' '), ExtractThumbnail(i), ExtractDownload(i).replace('\n', ''), ExtractRating(i)]
-        Exporting = MatchData(Exporting)
         Exporter.append(Exporting)
         if Export.UpdateData(Exporting[0], Exporting[-1]) == False:
             Export.AddData(Exporting)
