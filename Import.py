@@ -1,6 +1,10 @@
 import os
 
-token = input('Enter a token: ")
+if os.path.exists('token.txt'):
+    with open('token.txt', 'r') as f:
+        token = f.read()
+else:
+    token = input('Enter a token: ')
 
 os.system(f'cmd /c "dotnet DicordChatExporter.CLI\\DiscordChatExporter.Cli.dll export -t "{token}" -c 939905115505180682 -o Chat.txt -f PlainText"')
 #Gets a list of all messages from maps-pinboard
