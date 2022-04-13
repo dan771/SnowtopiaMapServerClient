@@ -22,8 +22,8 @@ COPY ./nginx.conf /etc/nginx/nginx.conf
 # Create directories
 RUN mkdir /web && mkdir /web/app && mkdir /web/public
 
-COPY ./src/* /web/app
-COPY ./public/* /web/public
+COPY ./src/* /web/app/
+COPY ./public/* /web/public/
 
 # Set rights
 RUN /bin/bash -c 'chmod +x /web/app/Process.py'
