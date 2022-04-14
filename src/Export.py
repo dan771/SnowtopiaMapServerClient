@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
-import os
+import os, sys, time
+
+from requests import head
 
 path = os.getcwd()
 parent = os.path.abspath(os.path.join(path, os.pardir))
@@ -11,6 +13,8 @@ with open(f'{parent}/public/MapPage.html', 'r', encoding="utf8") as f:
 elements = soup.find_all('tr')
 elements.pop(0)
 
+heading = soup.find('h2')
+systemtime = time.asctime(time.localtime(time.time()))
 def help():
     print('Commands: \n ExtractData(msgID) \n DeleteData(msgID) \n UpdateData(msgID, newRating) - updates the rating \n AddData(DataList) - [messageID, message-id(link), Author, Content, Thumbnail(img-link), rating] \n EditData(msgID, data_type, new) - data types include \'ID\', \'IDLINK\', \'AUTHOR\', \'CONTENT\', \'THUMBNAIL\', \'DOWNLOAD\', \'RATING\'')
 
@@ -27,6 +31,7 @@ def DeleteData(msgID):
         ID = e.find('a').contents[0]
         if str(msgID)==str(ID):
             e.decompose()
+            heading.string = f'Welcome to our collection of community made maps! Last updated (UTC+1) {systemtime}'
             print('Successfully deleted data from', msgID)
             with open(f'{parent}/public/MapPage.html', 'w', encoding="utf8") as f:
                 f.write(str(soup))
@@ -40,6 +45,7 @@ def UpdateData(msgID, rating):
         if str(msgID)==str(ID):
             A = e.find_all('td')[-1]
             A.string = str(rating)
+            heading.string = f'Welcome to our collection of community made maps! Last updated (UTC+1) {systemtime}'
             print('Successfully updated data from', msgID)
             with open(f'{parent}/public/MapPage.html', 'w', encoding="utf8") as f:
                 f.write(str(soup))
@@ -84,6 +90,7 @@ def EditData(msgID, mode, edit):
                 new.string = edit
                 old.replace_with(new)
 
+            heading.string = f'Welcome to our collection of community made maps! Last updated (UTC+1) {systemtime}'
             with open(f'{parent}/public/MapPage.html', 'w', encoding="utf8") as f:
                 f.write(str(soup))
                 print('written sucsessfully!')
@@ -122,6 +129,7 @@ def AddData(Data): #[messageID, message-id(link), Author, Content, Thumbnail(img
     row.insert(4, downloadParent)
     downloadParent.insert(0, download)
     row.insert(5, rating)
+    heading.string = f'Welcome to our collection of community made maps! Last updated (UTC+1) {systemtime}'
     print('Success!')
     with open(f'{parent}/public/MapPage.html', 'w', encoding="utf8") as f:
         f.write(str(soup))
